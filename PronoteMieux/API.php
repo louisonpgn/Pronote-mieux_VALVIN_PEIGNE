@@ -10,7 +10,7 @@
 <?php echo 'debut de activite2 <br>' ;
 //variables de connexion
 $host = 'localhost';		
-$dbname = 'NotesEleves';
+$dbname = 'phpmyadmin';
 $username = 'root';
 $password = '';
 
@@ -26,7 +26,7 @@ try {
 }
 
 //préparation de la requête
-$utilisateur 
+$utilisateur =="Placin";
 if ($utilisateur == "Placin")
 {
     $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Placin"';
@@ -57,6 +57,7 @@ $resultat = $bdd->query($requete);
 
 // On récupère tout dans la variable tableau
 $tableau = $resultat->fetchall();  
+print_r($tableau);
 ?>
 
 </body>
