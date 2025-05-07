@@ -10,7 +10,7 @@
 <?php echo 'debut de activite2 <br>' ;
 //variables de connexion
 $host = 'localhost';		
-$dbname = 'notes';
+$dbname = 'NotesEleves';
 $username = 'root';
 $password = '';
 
@@ -24,10 +24,13 @@ try {
 	// Si erreur, tout arrêter
 	die('Erreur : '. $e->getMessage());
 }
+
 //préparation de la requête
 $requete = '';
+
 //requête auprès de la base
 $resultat = $bdd->query($requete);
+
 // On récupère tout dans la variable tableau
 $tableau = $resultat->fetchall();  
 ?>
