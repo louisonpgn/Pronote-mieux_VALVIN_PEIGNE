@@ -29,19 +29,11 @@ try {
 $utilisateur ="Placin";
 if ($utilisateur = "Placin")
 {
-<<<<<<< HEAD
-    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin";';
-}
-else if ($utilisateur = "Chaniaud")
-{
-    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud";';
-=======
     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin"';
 }
 else if ($utilisateur = "Chaniaud")
 {
     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud"';
->>>>>>> 61be1d62a1f59179821ac1e7d18e3f5a4a818353
 }
 else if ($utilisateur = "Peuplu")
 {
