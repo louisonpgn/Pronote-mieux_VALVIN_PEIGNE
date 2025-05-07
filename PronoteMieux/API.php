@@ -27,27 +27,28 @@ try {
 
 //préparation de la requête
 $utilisateur ="Placin";
-if ($utilisateur = "Placin")
+$mdp ="FredericPlacin";
+if ($utilisateur = "Placin" && $mdp = "FredericPlacin")
 {
     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin"';
 }
-else if ($utilisateur = "Chaniaud")
+else if ($utilisateur = "Chaniaud" && $mdp = "NoemieChaniaud")
 {
     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud"';
 }
-else if ($utilisateur = "Peuplu")
+else if ($utilisateur = "Peuplu" && $mdp = "JeanPeuplu")
 {
     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
 }
-else if ($utilisateur = "Ptipeu")
+else if ($utilisateur = "Ptipeu" && $mdp = "JustinPtipeu")
 {
     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
 }
-else if ($utilisateur = "Verse")
+else if ($utilisateur = "Verse" && $mdp = "AlainVerse")
 {
     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
 }
-else if ($utilisateur = "Donçavapaslatête")
+else if ($utilisateur = "Donçavapaslatête" && $mdp = "EddyDonçavapaslatête")
 {
     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
 }
