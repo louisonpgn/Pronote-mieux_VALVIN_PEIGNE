@@ -28,30 +28,50 @@ try {
 //préparation de la requête
 $utilisateur ="Placin";
 $mdp ="FredericPlacin";
-if ($utilisateur = "Placin" && $mdp = "FredericPlacin")
-{
-    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin"';
+
+function authentification($utilisateur, $mdp) {
+    // on récupère la liste des noms et prénoms des élèves existants 
+    $requete2 = 'SELECT Nom FROM Notes';
+    $requete3 = 'SELECT Prenom FROM Notes';
+
+    // on les places dans un tableau 
+    $nomsEleves = $bdd->query($requete2);
+    $tableau2 = $nomsEleves->fetchall(); 
+    $prenomsEleves = $bdd->query($requete3);
+    $tableau3 = $prenomsEleves->fetchall(); 
+
+    // on parcourt les tableaux pour déterminer si l'tilisateur existe 
+    for ($i = 0; $i < 5, $i++)
+    {
+        if ($utilisateur = "Placin")
+        {
+            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin"';
+        }
+        else if ($utilisateur = "Chaniaud")
+        {
+            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud"';
+        }
+        else if ($utilisateur = "Peuplu")
+        {
+            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
+        }
+        // else if ($utilisateur = "Ptipeu" && $mdp = "JustinPtipeu")
+        // {
+        //     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
+        // }
+        // else if ($utilisateur = "Verse" && $mdp = "AlainVerse")
+        // {
+        //     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
+        // }
+        // else if ($utilisateur = "Donçavapaslatête" && $mdp = "EddyDonçavapaslatête")
+        // {
+        //     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
+        // }
+    }
+    
 }
-else if ($utilisateur = "Chaniaud" && $mdp = "NoemieChaniaud")
-{
-    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud"';
-}
-else if ($utilisateur = "Peuplu" && $mdp = "JeanPeuplu")
-{
-    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
-}
-else if ($utilisateur = "Ptipeu" && $mdp = "JustinPtipeu")
-{
-    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
-}
-else if ($utilisateur = "Verse" && $mdp = "AlainVerse")
-{
-    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
-}
-else if ($utilisateur = "Donçavapaslatête" && $mdp = "EddyDonçavapaslatête")
-{
-    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
-}
+
+
 
 //requête auprès de la base
 $resultat = $bdd->query($requete);
