@@ -27,9 +27,9 @@ try {
 
 //préparation de la requête
 $utilisateur ="Placin";
-$mdp ="FredericPlacin";
+$mdp="FredericPlacin";
 
-function authentification($utilisateur, $mdp) {
+function authentification($utilisateur, $mdp, $bdd) {
     // on récupère la liste des noms et prénoms des élèves existants 
     $requete2 = 'SELECT Nom FROM Notes';
     $requete3 = 'SELECT Prenom FROM Notes';
@@ -41,7 +41,7 @@ function authentification($utilisateur, $mdp) {
     $tableau3 = $prenomsEleves->fetchall(); 
 
     // on parcourt les tableaux pour déterminer si l'tilisateur existe 
-    for ($i = 0; $i < 5, $i++)
+    for ($i = 0; $i < 5; $i++)
     {
         if ($utilisateur = "Placin")
         {
@@ -67,23 +67,30 @@ function authentification($utilisateur, $mdp) {
         // {
         //     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
         // }
+        else 
+        {
+            print_r("Erreur");
+        }
+        $resultat = $bdd->query($requete);
+        $tableau = $resultat->fetchall();  
+        function envoiJSON($donnees) {
+            $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
+            echo $json ; 
+        }
+        envoiJSON($tableau);
+
     }
     
 }
 
-
+authentification($utilisateur,$mdp,$bdd);
 
 //requête auprès de la base
-$resultat = $bdd->query($requete);
+
 
 // On récupère tout dans la variable tableau
-$tableau = $resultat->fetchall();  
 // print_r($tableau);
-function envoiJSON($donnees) {
-    $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
-    echo $json ; 
-}
-envoiJSON($tableau);
+
 ?>
 
 <!-- </body>
