@@ -29,27 +29,27 @@ try {
 $utilisateur ="Placin";
 if ($utilisateur = "Placin")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Placin"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin"';
 }
 else if ($utilisateur = "Chaniaud")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Chaniaud"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud"';
 }
 else if ($utilisateur = "Peuplu")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Peuplu"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
 }
 else if ($utilisateur = "Ptipeu")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Ptipeu"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
 }
 else if ($utilisateur = "Verse")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Verse"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
 }
 else if ($utilisateur = "Donçavapaslatête")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Donçavapaslatête"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
 }
 
 //requête auprès de la base
