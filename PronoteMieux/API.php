@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body> -->
 
 <?php echo 'debut de activite2 <br>' ;
 //variables de connexion
@@ -29,27 +29,27 @@ try {
 $utilisateur ="Placin";
 if ($utilisateur = "Placin")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Placin"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin";';
 }
 else if ($utilisateur = "Chaniaud")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Chaniaud"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud";';
 }
 else if ($utilisateur = "Peuplu")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Peuplu"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
 }
 else if ($utilisateur = "Ptipeu")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Ptipeu"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
 }
 else if ($utilisateur = "Verse")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Verse"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
 }
 else if ($utilisateur = "Donçavapaslatête")
 {
-    $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Donçavapaslatête"';
+    $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
 }
 
 //requête auprès de la base
@@ -57,8 +57,13 @@ $resultat = $bdd->query($requete);
 
 // On récupère tout dans la variable tableau
 $tableau = $resultat->fetchall();  
-print_r($tableau);
+// print_r($tableau);
+function envoiJSON($donnees) {
+    $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
+    echo $json ; 
+}
+envoiJSON($tableau);
 ?>
 
-</body>
-</html>
+<!-- </body>
+</html> -->
