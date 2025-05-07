@@ -26,28 +26,28 @@ try {
 }
 
 //préparation de la requête
-$utilisateur =="Placin";
-if ($utilisateur == "Placin")
+$utilisateur ="Placin";
+if ($utilisateur = "Placin")
 {
     $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Placin"';
 }
-else if ($utilisateur == "Chaniaud")
+else if ($utilisateur = "Chaniaud")
 {
     $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Chaniaud"';
 }
-else if ($utilisateur == "Peuplu")
+else if ($utilisateur = "Peuplu")
 {
     $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Peuplu"';
 }
-else if ($utilisateur == "Ptipeu")
+else if ($utilisateur = "Ptipeu")
 {
     $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Ptipeu"';
 }
-else if ($utilisateur == "Verse")
+else if ($utilisateur = "Verse")
 {
     $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Verse"';
 }
-else if ($utilisateur == "Donçavapaslatête")
+else if ($utilisateur = "Donçavapaslatête")
 {
     $requete = 'SELECT Matiere, Notes FROM NotesEleves WHERE Nom LIKE "Donçavapaslatête"';
 }
