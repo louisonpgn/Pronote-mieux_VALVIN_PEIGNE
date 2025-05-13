@@ -49,15 +49,15 @@ function authentification($utilisateur, $mdp, $bdd) {
     // on parcourt les tableaux pour déterminer si l'tilisateur existe 
     for ($i = 0; $i < 5; $i++)
     {
-        if ($utilisateur = "Placin")
+        if ($utilisateur == "Placin")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin"';
         }
-        else if ($utilisateur = "Chaniaud")
+        else if ($utilisateur == "Chaniaud")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud"';
         }
-        else if ($utilisateur = "Peuplu")
+        else if ($utilisateur == "Peuplu")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
         }
