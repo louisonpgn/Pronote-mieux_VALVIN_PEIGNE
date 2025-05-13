@@ -45,27 +45,27 @@ function authentification($utilisateur, $mdp, $bdd) {
     // on parcourt les tableaux pour déterminer si l'tilisateur existe 
     for ($i = 0; $i < 5; $i++)
     {
-        if ($utilisateur == "Placin")
+        if ($utilisateur == "Frederic" && $mdp = "Placin")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin"';
         }
-        else if ($utilisateur == "Chaniaud")
+        else if ($utilisateur == "Noemie" && $mdp = "Chaniaud")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud"';
         }
-        else if ($utilisateur == "Peuplu")
+        else if ($utilisateur == "Jean" && $mdp = "Peuplu")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
         }
-        else if ($utilisateur = "Ptipeu" && $mdp = "JustinPtipeu")
+        else if ($utilisateur = "Justin" && $mdp = "Ptipeu")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
         }
-        else if ($utilisateur = "Verse" && $mdp = "AlainVerse")
+        else if ($utilisateur = "Alain" && $mdp = "Verse")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
         }
-        else if ($utilisateur = "Donçavapaslatête" && $mdp = "EddyDonçavapaslatête")
+        else if ($utilisateur = "Eddy" && $mdp = "Donçavapaslatête")
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
         }
