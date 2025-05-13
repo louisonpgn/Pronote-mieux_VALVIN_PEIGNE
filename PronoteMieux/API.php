@@ -1,19 +1,11 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body> -->
-
 <?php 
 // ajout d'un truc 
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: POST");
 
-echo 'debut de activite2 <br>' ;
+//echo 'debut de activite2 <br>' ;
 //variables de connexion
 $host = 'localhost';		
 $dbname = 'notes';
@@ -24,7 +16,7 @@ $password = '';
 try {
 	$bdd = new PDO('mysql:host='. $host .';dbname='. $dbname .';charset=utf8',
 	$username, $password);
-    echo 'connexion établie <br>' ; //vérifie la connexion
+    //echo 'connexion établie <br>' ; //vérifie la connexion
 
 } catch(Exception $e) {
 	// Si erreur, tout arrêter + message
@@ -35,6 +27,10 @@ try {
 $utilisateur ="Placin";
 $mdp="FredericPlacin";
 
+function envoiJSON($donnees) {
+    $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
+    echo $json ; 
+}
 function authentification($utilisateur, $mdp, $bdd) {
     // on récupère la liste des noms et prénoms des élèves existants 
     $requete2 = 'SELECT Nom FROM Notes';
@@ -79,25 +75,10 @@ function authentification($utilisateur, $mdp, $bdd) {
         }
         $resultat = $bdd->query($requete);
         $tableau = $resultat->fetchall();  
-        function envoiJSON($donnees) {
-            $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
-            echo $json ; 
-        }
-        envoiJSON($tableau);
-
     }
-    
+     envoiJSON($tableau);
 }
 
 authentification($utilisateur,$mdp,$bdd);
 
-//requête auprès de la base
-
-
-// On récupère tout dans la variable tableau
-// print_r($tableau);
-
 ?>
-
-<!-- </body>
-</html> -->
