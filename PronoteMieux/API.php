@@ -24,8 +24,8 @@ try {
 }
 
 //préparation de la requête
-$utilisateur ="Placin";
-$mdp="FredericPlacin";
+$utilisateur =$_POST["utilisateur"];
+$mdp=$_POST["motdepasse"];
 
 function envoiJSON($donnees) {
     $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
