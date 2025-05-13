@@ -23,7 +23,12 @@ function App() {
       setError(data.message);
       setNotes([]);
     }
-    console.table(data);
+  };
+
+  function AfficherTableau() {
+    return (
+      
+    );
   };
 
   return (
