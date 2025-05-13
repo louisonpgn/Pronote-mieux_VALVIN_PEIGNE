@@ -7,7 +7,13 @@
 </head>
 <body> -->
 
-<?php echo 'debut de activite2 <br>' ;
+<?php 
+// ajout d'un truc 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
+header("Access-Control-Allow-Methods: POST");
+
+echo 'debut de activite2 <br>' ;
 //variables de connexion
 $host = 'localhost';		
 $dbname = 'phpmyadmin';
@@ -21,8 +27,8 @@ try {
     echo 'connexion établie <br>' ; //vérifie la connexion
 
 } catch(Exception $e) {
-	// Si erreur, tout arrêter
-	die('Erreur : '. $e->getMessage());
+	// Si erreur, tout arrêter + message
+	die('Erreur de connexion à la BDD : '. $e->getMessage());
 }
 
 //préparation de la requête
