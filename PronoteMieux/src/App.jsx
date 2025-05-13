@@ -23,8 +23,23 @@ function App() {
 
   function AfficherTableau() {
     return (
-      test
-    );
+          <table border="1">
+            <thead>
+              <tr>
+                <th>matiere</th>
+                <th>note</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((row) => (
+                <tr key={row.id}>
+                  <td>{row.matiere}</td>
+                  <td>{row.note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
   };
 
   return (
@@ -46,6 +61,9 @@ function App() {
       <button onClick={handleConnexion}>Se connecter</button>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
+    </div>
+    <div>
+      AfficherTableau();
     </div>
     </>
   );
