@@ -23,7 +23,7 @@ function App() {
       setError(data.message);
       setNotes([]);
     }
-    console.log('coucou');
+    console.table(data);
   };
 
   return (
