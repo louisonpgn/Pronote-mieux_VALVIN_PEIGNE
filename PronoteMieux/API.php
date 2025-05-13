@@ -16,7 +16,7 @@ header("Access-Control-Allow-Methods: POST");
 echo 'debut de activite2 <br>' ;
 //variables de connexion
 $host = 'localhost';		
-$dbname = 'phpmyadmin';
+$dbname = 'notes';
 $username = 'root';
 $password = '';
 
