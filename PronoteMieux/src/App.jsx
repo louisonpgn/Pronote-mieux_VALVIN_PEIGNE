@@ -23,7 +23,7 @@ function App() {
 
   function AfficherTableau() {
     return (
-      
+      test
     );
   };
 
@@ -46,25 +46,6 @@ function App() {
       <button onClick={handleConnexion}>Se connecter</button>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      {notes.length > 0 && (
-        <table border="1" style={{ marginTop: '20px' }}>
-          <thead>
-            <tr>
-              <th>Matière</th>
-              <th>Note</th>
-            </tr>
-          </thead>
-          <tbody>
-            {notes.map((note, index) => (
-              <tr key={index}>
-                <td>{note.Matiere}</td>
-                <td>{note.Notes}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
     </div>
     </>
   );
