@@ -3,7 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: GET");
 
 //echo 'debut de activite2 <br>' ;
 //variables de connexion
@@ -24,8 +24,8 @@ try {
 }
 
 //préparation de la requête
-$utilisateur =$_POST["utilisateur"];
-$mdp=$_POST["motdepasse"];
+$utilisateur =$_GET["utilisateur"];
+$mdp=$_GET["motdepasse"];
 
 function envoiJSON($donnees) {
     $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
@@ -57,18 +57,18 @@ function authentification($utilisateur, $mdp, $bdd) {
         {
             $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
         }
-        // else if ($utilisateur = "Ptipeu" && $mdp = "JustinPtipeu")
-        // {
-        //     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
-        // }
-        // else if ($utilisateur = "Verse" && $mdp = "AlainVerse")
-        // {
-        //     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
-        // }
-        // else if ($utilisateur = "Donçavapaslatête" && $mdp = "EddyDonçavapaslatête")
-        // {
-        //     $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
-        // }
+        else if ($utilisateur = "Ptipeu" && $mdp = "JustinPtipeu")
+        {
+            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
+        }
+        else if ($utilisateur = "Verse" && $mdp = "AlainVerse")
+        {
+            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
+        }
+        else if ($utilisateur = "Donçavapaslatête" && $mdp = "EddyDonçavapaslatête")
+        {
+            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
+        }
         else 
         {
             print_r("Erreur");
