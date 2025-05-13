@@ -8,11 +8,7 @@ function App() {
   const [error, setError] = useState('');
 
   const handleConnexion = async () => {
-    const response = await fetch('http://localhost/API.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ utilisateur: nom, mdp }),
-    });
+    const response = await fetch("http://localhost/API.php?utilisateur="+nom+"&motdepasse="+mdp);
 
     const data = await response.json();
 
