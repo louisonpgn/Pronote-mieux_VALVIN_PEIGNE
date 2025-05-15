@@ -32,7 +32,7 @@ function envoiJSON($donnees) {
 }
 
 function authentification($utilisateur, $mdp, $bdd) {
-    $etudiants = [ // création d'une liste des utilisateurs autorisés avec id = prenom et mdp = nom 
+    $etudiants = [
         "Frederic" => "Placin",
         "Noemie" => "Chaniaud",
         "Jean" => "Peuplu",
@@ -41,19 +41,20 @@ function authentification($utilisateur, $mdp, $bdd) {
         "Eddy" => "Donçavapaslatête"
     ];
 
-   // vérification des identifiants entrés par l'utilisateur
-   if (isset($etudiants[$utilisateur]) && $etudiants[$utilisateur] === $mdp) {
-    $nom = $etudiants[$utilisateur]; //récupère le nom de l'étudiant
-    $requete = $bdd->prepare('SELECT Matiere, Notes FROM Notes WHERE Nom = ?');
-    $requete->execute([$nom]);
-    $resultats = $requete->fetchAll(PDO::FETCH_ASSOC); //récupérer les résultats
+    if (isset($etudiants[$utilisateur]) && $etudiants[$utilisateur] === $mdp) 
+    {
+        $nom = $etudiants[$utilisateur];
+        $requete = $bdd->prepare('SELECT Matiere, Notes FROM Notes WHERE Nom = ?');
+        $requete->execute([$nom]);
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-    envoiJSON($resultats); 
-
-} else {
-    // si l'identifiant ou le mot de passe est incorrect
-    envoiJSON(["success" => false, "message" => "Identifiants invalides"]);
-}
+        envoiJSON($resultats);
+        return; 
+    } else 
+    {
+        envoiJSON(["success" => false, "message" => "Identifiants invalides"]);
+        return; 
+    }
 }
 
 authentification($utilisateur, $mdp, $bdd);
