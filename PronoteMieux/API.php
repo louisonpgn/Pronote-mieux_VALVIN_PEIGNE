@@ -32,7 +32,7 @@ function envoiJSON($donnees) {
 }
 
 function authentification($utilisateur, $mdp, $bdd) {
-    $etudiants = [
+    $etudiants = [ 
         "Frederic" => "Placin",
         "Noemie" => "Chaniaud",
         "Jean" => "Peuplu",
@@ -41,19 +41,25 @@ function authentification($utilisateur, $mdp, $bdd) {
         "Eddy" => "Donçavapaslatête"
     ];
 
-    if (isset($etudiants[$utilisateur]) && $etudiants[$utilisateur] === $mdp) 
-    {
+    // On vérifie que les identifiants existent exactement dans le tableau
+    if (array_key_exists($utilisateur, $etudiants) && $etudiants[$utilisateur] === $mdp) {
         $nom = $etudiants[$utilisateur];
         $requete = $bdd->prepare('SELECT Matiere, Notes FROM Notes WHERE Nom = ?');
         $requete->execute([$nom]);
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        envoiJSON($resultats);
-        return; 
-    } else 
-    {
-        envoiJSON(["success" => false, "message" => "Identifiants invalides"]);
-        return; 
+        echo json_encode([
+            "success" => true,
+            "notes" => $resultats
+        ], JSON_UNESCAPED_UNICODE);
+        return;
+    } else {
+        // renvoie un message d'erreur 
+        echo json_encode([
+            "success" => false,
+            "message" => "Identifiants invalides"
+        ], JSON_UNESCAPED_UNICODE);
+        return;
     }
 }
 
