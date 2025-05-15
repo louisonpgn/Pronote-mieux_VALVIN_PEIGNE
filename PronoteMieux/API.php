@@ -5,14 +5,13 @@ header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: GET");
 
-//echo 'debut de activite2 <br>' ;
 //variables de connexion
 $host = 'localhost';		
 $dbname = 'notes';
 $username = 'root';
 $password = '';
 
-//tentative de connexion à la base de donnée
+//tentative de connexion à la base de données
 try {
 	$bdd = new PDO('mysql:host='. $host .';dbname='. $dbname .';charset=utf8',
 	$username, $password);
@@ -31,52 +30,28 @@ function envoiJSON($donnees) {
     $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
     echo $json ; 
 }
+
 function authentification($utilisateur, $mdp, $bdd) {
-    // on récupère la liste des noms et prénoms des élèves existants 
-    $requete2 = 'SELECT Nom FROM Notes';
-    $requete3 = 'SELECT Prenom FROM Notes';
+    $etudiants = [ // création d'une liste des utilisateurs autorisés avec id = prenom et mdp = nom 
+        "Frederic" => "Placin",
+        "Noemie" => "Chaniaud",
+        "Jean" => "Peuplu",
+        "Justin" => "Ptipeu",
+        "Alain" => "Verse",
+        "Eddy" => "Donçavapaslatête"
+    ];
 
-    // on les places dans un tableau 
-    $nomsEleves = $bdd->query($requete2);
-    $tableau2 = $nomsEleves->fetchall(); 
-    $prenomsEleves = $bdd->query($requete3);
-    $tableau3 = $prenomsEleves->fetchall(); 
+    if (isset($etudiants[$utilisateur]) && $etudiants[$utilisateur] === $mdp) { // vérification que le nom d'utilisateur existe dans la liste et que le mdp correspond 
+        $nom = $etudiants[$utilisateur]; // récup du nom de famille liée au prénom entré dans id 
+        $requete = $bdd->prepare('SELECT Matiere, Notes FROM Notes WHERE Nom = ?'); // selection de toutes les lignes de la BDD avec ce nom 
+        $requete->execute([$nom]);
+        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC); // transforme en tableau 
 
-    // on parcourt les tableaux pour déterminer si l'tilisateur existe 
-    for ($i = 0; $i < 5; $i++)
-    {
-        if ($utilisateur == "Frederic" && $mdp = "Placin")
-        {
-            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Placin"';
-        }
-        else if ($utilisateur == "Noemie" && $mdp = "Chaniaud")
-        {
-            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Chaniaud"';
-        }
-        else if ($utilisateur == "Jean" && $mdp = "Peuplu")
-        {
-            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Peuplu"';
-        }
-        else if ($utilisateur = "Justin" && $mdp = "Ptipeu")
-        {
-            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Ptipeu"';
-        }
-        else if ($utilisateur = "Alain" && $mdp = "Verse")
-        {
-            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Verse"';
-        }
-        else if ($utilisateur = "Eddy" && $mdp = "Donçavapaslatête")
-        {
-            $requete = 'SELECT Matiere, Notes FROM Notes WHERE Nom LIKE "Donçavapaslatête"';
-        }
-        else 
-        {
-            print_r("Erreur");
-        }
-        $resultat = $bdd->query($requete);
-        $tableau = $resultat->fetchall();  
+        envoiJSON($resultats);
+
+    } else {
+        envoiJSON(["success" => false, "message" => "Identifiants invalides"]); // pour informer l'utilisateur si pb d'authentification 
     }
-     envoiJSON($tableau);
 }
 
 authentification($utilisateur,$mdp,$bdd);
