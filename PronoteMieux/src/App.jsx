@@ -19,13 +19,14 @@ function App() {
       setError(data.message);
       setNotes([]);
     }
+    console.table(data);
   };
 
-  function AfficherTableau() {
-    return (
-      test
-    );
-  };
+  // function AfficherTableau() {
+  //   return (
+  //     test
+  //   );
+  // };
 
   return (
     <>
