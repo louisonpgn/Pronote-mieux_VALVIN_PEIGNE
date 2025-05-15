@@ -48,6 +48,9 @@ function App() {
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
+    <div>
+      AfficherTableau();
+    </div>
     </>
   );
 }
