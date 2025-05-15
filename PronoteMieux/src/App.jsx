@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
   const [nom, setNom] = useState('');
@@ -24,47 +24,52 @@ function App() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      {!estConnecte ? (
-        <>
-          <h2>Connexion Étudiant</h2>
-          <input
-            type="text"
-            placeholder="Nom"
-            value={nom}
-            onChange={(e) => setNom(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            value={mdp}
-            onChange={(e) => setMdp(e.target.value)}
-          />
-          <button onClick={handleConnexion}>Se connecter</button>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-        </>
-      ) : (
-        <>
-          <h2>Bienvenue, {nom}</h2>
-          <h3>Voici vos notes :</h3>
-          <table border="1">
-            <thead>
-              <tr>
-                <th>Matière</th>
-                <th>Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {notes.map((note, index) => (
-                <tr key={index}>
-                  <td>{note.Matiere}</td>
-                  <td>{note.Notes}</td>
+    <div className="app-container">
+      <div className="wave wave-left"></div>
+      <div className="wave wave-right"></div>
+
+      <div className="content-box">
+        {!estConnecte ? (
+          <>
+            <h2>Connexion Étudiant</h2>
+            <input
+              type="text"
+              placeholder="Nom"
+              value={nom}
+              onChange={(e) => setNom(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={mdp}
+              onChange={(e) => setMdp(e.target.value)}
+            />
+            <button onClick={handleConnexion}>Se connecter</button>
+            {error && <p className="error">{error}</p>}
+          </>
+        ) : (
+          <>
+            <h2>Bienvenue, {nom}</h2>
+            <h3>Voici vos notes :</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Matière</th>
+                  <th>Note</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
+              </thead>
+              <tbody>
+                {notes.map((note, index) => (
+                  <tr key={index}>
+                    <td>{note.Matiere}</td>
+                    <td>{note.Notes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+      </div>
     </div>
   );
 }
