@@ -41,19 +41,20 @@ function authentification($utilisateur, $mdp, $bdd) {
         "Eddy" => "Donçavapaslatête"
     ];
 
-    if (isset($etudiants[$utilisateur]) && $etudiants[$utilisateur] === $mdp) { // vérification que le nom d'utilisateur existe dans la liste et que le mdp correspond 
-        $nom = $etudiants[$utilisateur]; // récup du nom de famille liée au prénom entré dans id 
-        $requete = $bdd->prepare('SELECT Matiere, Notes FROM Notes WHERE Nom = ?'); // selection de toutes les lignes de la BDD avec ce nom 
-        $requete->execute([$nom]);
-        $resultats = $requete->fetchAll(PDO::FETCH_ASSOC); // transforme en tableau 
+   // vérification des identifiants entrés par l'utilisateur
+   if (isset($etudiants[$utilisateur]) && $etudiants[$utilisateur] === $mdp) {
+    $nom = $etudiants[$utilisateur]; //récupère le nom de l'étudiant
+    $requete = $bdd->prepare('SELECT Matiere, Notes FROM Notes WHERE Nom = ?');
+    $requete->execute([$nom]);
+    $resultats = $requete->fetchAll(PDO::FETCH_ASSOC); //récupérer les résultats
 
-        envoiJSON($resultats);
+    envoiJSON($resultats); 
 
-    } else {
-        envoiJSON(["success" => false, "message" => "Identifiants invalides"]); // pour informer l'utilisateur si pb d'authentification 
-    }
+} else {
+    // si l'identifiant ou le mot de passe est incorrect
+    envoiJSON(["success" => false, "message" => "Identifiants invalides"]);
+}
 }
 
-authentification($utilisateur,$mdp,$bdd);
-
+authentification($utilisateur, $mdp, $bdd);
 ?>

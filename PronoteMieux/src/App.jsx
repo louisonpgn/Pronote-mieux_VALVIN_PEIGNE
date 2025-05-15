@@ -12,14 +12,16 @@ function App() {
     const response = await fetch(`http://localhost/API.php?utilisateur=${nom}&motdepasse=${mdp}`);
     const data = await response.json();
 
-    if (Array.isArray(data)) {
+    // vérifie si la réponse contient une erreur d'authentification
+    if (data.success === false) {
+      setError(data.message);  // afficher l'erreur retournée par l'API
+      setNotes([]);             // réinitialiser les notes
+      setEstConnecte(false);    // garder l'utilisateur déconnecté si pb
+    } else if (Array.isArray(data)) {
+      // si la réponse contient des notes, c'est que la connexion a réussi
       setNotes(data);
-      setError('');
-      setEstConnecte(true);
-    } else {
-      setError('Nom ou mot de passe incorrect.');
-      setNotes([]);
-      setEstConnecte(false);
+      setError('');  // réinitialiser l'erreur
+      setEstConnecte(true);  // connecter l'utilisateur à ses notes
     }
   };
 
