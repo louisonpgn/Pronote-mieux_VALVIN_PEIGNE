@@ -8,8 +8,11 @@ function App() {
   const [error, setError] = useState('');
   const [estConnecte, setEstConnecte] = useState(false);
 
+
   const handleConnexion = async () => {
-    const response = await fetch(`http://localhost/API.php?utilisateur=${nom}&motdepasse=${mdp}`);
+    console.log(nom);
+    console.log(mdp);
+    const response = await fetch(`https://evalvin.zzz.bordeaux-inp.fr/API.php/?utilisateur=${nom}&motdepasse=${mdp}`);
     const data = await response.json();
 
     // vérifie si la réponse contient une erreur d'authentification
