@@ -23,30 +23,35 @@ try {
 }
 
 //préparation de la requête
-$utilisateur =$_GET["utilisateur"];
-$mdp=$_GET["motdepasse"];
+$utilisateur =$_GET["utilisateur"] ?? '';
+$mdp=$_GET["motdepasse"] ?? '';
 
 function envoiJSON($donnees) {
     $json = json_encode($donnees, JSON_UNESCAPED_UNICODE) ;
     echo $json ; 
 }
 
-function authentification($utilisateur, $mdp, $bdd) {
-    $etudiants = [ 
-        "Frederic" => "Placin",
-        "Noemie" => "Chaniaud",
-        "Jean" => "Peuplu",
-        "Justin" => "Ptipeu",
-        "Alain" => "Verse",
-        "Eddy" => "Donçavapaslatête"
-    ];
+//tableau d'identifiants 
+$etudiants = [ 
+    "Frederic" => "Placin",
+    "Noemie" => "Chaniaud",
+    "Jean" => "Peuplu",
+    "Justin" => "Ptipeu",
+    "Alain" => "Verse",
+    "Eddy" => "Donçavapaslatête"
+];
 
+
+function authentification($utilisateur, $mdp, $bdd, $etudiants) {
+    
     // On vérifie que les identifiants existent exactement dans le tableau
     if (array_key_exists($utilisateur, $etudiants) && $etudiants[$utilisateur] === $mdp) {
-        $nom = $etudiants[$utilisateur];
-        $requete = $bdd->prepare('SELECT Matiere, Notes FROM Notes WHERE Nom = ?');
+        $nom = $utilisateur;
+        $requete = $bdd->prepare('SELECT Matiere, Notes FROM notes WHERE Nom = ?');
         $requete->execute([$nom]);
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        error_log("resultat sql pour $nom : " . print_r($resultats, true))
 
         echo json_encode([
             "success" => true,
@@ -63,5 +68,5 @@ function authentification($utilisateur, $mdp, $bdd) {
     }
 }
 
-authentification($utilisateur, $mdp, $bdd);
+authentification($utilisateur, $mdp, $bdd, $etudiants);
 ?>

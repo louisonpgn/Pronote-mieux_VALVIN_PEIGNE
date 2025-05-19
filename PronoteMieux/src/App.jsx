@@ -12,19 +12,26 @@ function App() {
   const handleConnexion = async () => {
     console.log(nom);
     console.log(mdp);
-    const response = await fetch(`https://evalvin.zzz.bordeaux-inp.fr/API.php/?utilisateur=${nom}&motdepasse=${mdp}`);
-    const data = await response.json();
 
-    // vérifie si la réponse contient une erreur d'authentification
-    if (data.success === false) {
-      setError(data.message);  // afficher l'erreur retournée par l'API
-      setNotes([]);             // réinitialiser les notes
-      setEstConnecte(false);    // garder l'utilisateur déconnecté si pb
-    } else if (Array.isArray(data)) {
-      // si la réponse contient des notes, c'est que la connexion a réussi
-      setNotes(data);
-      setError('');  // réinitialiser l'erreur
-      setEstConnecte(true);  // connecter l'utilisateur à ses notes
+    try { 
+      const response = await fetch(`https://evalvin.zzz.bordeaux-inp.fr/API.php/?utilisateur=${nom}&motdepasse=${mdp}`);
+      const data = await response.json();
+
+      // vérifie si la réponse contient une erreur d'authentification
+      if (data.success === false) {
+        setError(data.message);  // afficher l'erreur retournée par l'API
+        setNotes([]);             // réinitialise les notes
+        setEstConnecte(false);    // garder l'utilisateur déconnecté si pb
+      } else if (data.sucess === true  && Array.isArray(data.notes)) {
+        // si la réponse contient des notes, c'est que la connexion a réussi
+        setNotes(data.notes);
+        setError('');  // réinitialiser l'erreur
+        setEstConnecte(true);  // connecter l'utilisateur à ses notes
+      } else {
+        setError("Erreur inattendue.")
+      }
+    } catch (err){
+      setError("Erreur de connexion au serveur.")
     }
   };
 
