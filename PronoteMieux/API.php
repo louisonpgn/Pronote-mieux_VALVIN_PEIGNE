@@ -51,8 +51,6 @@ function authentification($utilisateur, $mdp, $bdd, $etudiants) {
         $requete->execute([$nom]);
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        error_log("resultat sql pour $nom : " . print_r($resultats, true))
-
         echo json_encode([
             "success" => true,
             "notes" => $resultats

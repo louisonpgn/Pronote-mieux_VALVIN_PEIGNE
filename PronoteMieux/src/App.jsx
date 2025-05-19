@@ -22,13 +22,13 @@ function App() {
         setError(data.message);  // afficher l'erreur retournée par l'API
         setNotes([]);             // réinitialise les notes
         setEstConnecte(false);    // garder l'utilisateur déconnecté si pb
-      } else if (data.sucess === true  && Array.isArray(data.notes)) {
+      } else if (data.success === true  && Array.isArray(data.notes)) {
         // si la réponse contient des notes, c'est que la connexion a réussi
         setNotes(data.notes);
         setError('');  // réinitialiser l'erreur
         setEstConnecte(true);  // connecter l'utilisateur à ses notes
       } else {
-        setError("Erreur inattendue.")
+        setError("Erreur inattendue.") // test pour savoir d'où vien l'erreur 
       }
     } catch (err){
       setError("Erreur de connexion au serveur.")
