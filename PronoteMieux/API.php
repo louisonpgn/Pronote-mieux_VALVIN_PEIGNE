@@ -46,7 +46,7 @@ function authentification($utilisateur, $mdp, $bdd, $etudiants) {
     
     // On vérifie que les identifiants existent exactement dans le tableau
     if (array_key_exists($utilisateur, $etudiants) && $etudiants[$utilisateur] === $mdp) {
-        $nom = $etudiants[$utilisateur];
+        $nom = $utilisateur;
         $requete = $bdd->prepare('SELECT Matiere, Notes FROM notes WHERE Nom = ?');
         $requete->execute([$nom]);
         $resultats = $requete->fetchAll(PDO::FETCH_ASSOC);
