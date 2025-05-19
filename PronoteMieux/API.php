@@ -7,9 +7,9 @@ header("Access-Control-Allow-Methods: GET");
 
 //variables de connexion
 $host = 'localhost';		
-$dbname = 'evalvin';
-$username = 'evalvin';
-$password = 'pronote';
+$dbname = 'notes';
+$username = 'root';
+$password = '';
 
 //tentative de connexion à la base de données
 try {

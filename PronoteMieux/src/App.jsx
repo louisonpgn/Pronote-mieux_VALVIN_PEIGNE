@@ -14,7 +14,7 @@ function App() {
     console.log(mdp);
 
     try { 
-      const response = await fetch(`https://evalvin.zzz.bordeaux-inp.fr/API.php/?utilisateur=${nom}&motdepasse=${mdp}`);
+      const response = await fetch(`http://localhost/API.php/?utilisateur=${nom}&motdepasse=${mdp}`);
       const data = await response.json();
 
       // vérifie si la réponse contient une erreur d'authentification
@@ -28,7 +28,7 @@ function App() {
         setError('');  // réinitialiser l'erreur
         setEstConnecte(true);  // connecter l'utilisateur à ses notes
       } else {
-        setError("Erreur inattendue.") // test pour savoir d'où vient l'erreur
+        setError("Erreur inattendue.") // test pour savoir d'où vien l'erreur 
       }
     } catch (err){
       setError("Erreur de connexion au serveur.")
