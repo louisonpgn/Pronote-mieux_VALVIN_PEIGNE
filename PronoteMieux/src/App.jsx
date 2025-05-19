@@ -28,7 +28,7 @@ function App() {
         setError('');  // réinitialiser l'erreur
         setEstConnecte(true);  // connecter l'utilisateur à ses notes
       } else {
-        setError("Erreur inattendue.") // test pour savoir d'où vien l'erreur 
+        setError("Erreur inattendue.") // test pour savoir d'où vient l'erreur
       }
     } catch (err){
       setError("Erreur de connexion au serveur.")
